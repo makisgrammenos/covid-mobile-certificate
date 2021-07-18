@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import ScanScreen  from './screens/Scan';
+import VerifyScan from './screens/VerifyScan';
 import { createStackNavigator } from '@react-navigation/stack';
 export default function App() {
   const Stack  = createStackNavigator();
@@ -20,6 +21,7 @@ export default function App() {
             headerTitleStyle:'bold',
             headerTitleAlign:'center'
           }}/>
+          <Stack.Screen name ="VerifyScan" component={VerifyScan}/>
         </Stack.Navigator>
       </NavigationContainer>
     </>
