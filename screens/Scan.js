@@ -4,10 +4,11 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import PostQR from '../modules/PostQR';
 
-function ScanScreen() {
+function ScanScreen({navigation}) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [done,setDone] = useState(false);
+  const [data,setData] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -15,11 +16,18 @@ function ScanScreen() {
       setHasPermission(status === 'granted');
     })();
   }, []);
-
-  const handleBarCodeScanned = ({ type, data }) => {
+  useEffect(() => {
+    if (done){
+      
+     navigation.navigate('VerifyScan',{data:data})
+    }
+  }, [done]);
+  const handleBarCodeScanned =  async ({ type, data }) => {
     setScanned(true);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    PostQR(data)
+    var info =  await PostQR(data);
+   await setData(info);
+   
     setDone(true);
   };
 
@@ -31,7 +39,7 @@ function ScanScreen() {
   }
 
   	return (done) ? (<View ><Text>Ok scanned</Text>
-        <Button title={"Scan Again"} onPress={()=>{setDone(false)}}/>
+        <Button title={"Scan Again"} onPress={()=>{setDone(false); setScanned(false)}}/>
       </View>) : 
  
     (<View style={{ flex: 1 }}>
