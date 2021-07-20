@@ -21,7 +21,11 @@ export default function App() {
             headerTitleStyle:'bold',
             headerTitleAlign:'center'
           }}/>
-          <Stack.Screen name ="VerifyScan" component={VerifyScan}/>
+          <Stack.Screen name ="VerifyScan" component={VerifyScan} options={{headerTitle:"Επιβεβαίωση στοιχείων",headerStyle:{
+            backgroundColor:"#003476"    },
+            headerTintColor: 'white',
+            headerTitleStyle:'bold',
+            headerTitleAlign:'center'}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </>
@@ -36,4 +40,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  
 });

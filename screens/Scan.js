@@ -23,10 +23,10 @@ function ScanScreen({navigation}) {
     }
   }, [done]);
   const handleBarCodeScanned =  async ({ type, data }) => {
-    setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+  
+   
     var info =  await PostQR(data);
-   await setData(info);
+    setData(info);
    
     setDone(true);
   };
