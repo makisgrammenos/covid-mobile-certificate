@@ -25,9 +25,12 @@ function VerifyScan({route,navigation}) {
         </View> 
         <View style={styles.buttonCon}>
         <Button
-            style={styles.buttonCon}
+            
             title="Αποθηκευση Πιστοποιητικου"
-            color="#003476"/>
+            color="#003476"
+           
+            onPress={()=>{}}
+            />
         </View>
        
         </NativeBaseProvider>
@@ -48,11 +51,13 @@ const styles = StyleSheet.create({
     nameDesc:{
         fontSize:18,
     },
-    buttonCon:{
-    
-        
-        
+    buttonCon:{   
         marginBottom:30,
+        marginRight:10,
+        marginLeft:10,
+
+      
+      
         
     }
     
