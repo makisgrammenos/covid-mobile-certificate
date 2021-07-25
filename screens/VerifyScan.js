@@ -3,18 +3,18 @@ import {View, Text, TouchableOpacity, StyleSheet,Button,Dimensions, DevSettings}
 import QRCode from 'react-native-qrcode-svg';
 import {NativeBaseProvider ,Center,VStack,Heading} from  'native-base';
 import SaveCertificate from '../modules/SaveCertificate';
-
+import { CommonActions } from '@react-navigation/native';
+import ResetRoute from "../modules/ResetRoute"
 function VerifyScan({route,navigation}) {
     const {data} = route.params;
     const [certSaved,setCertSaved] = useState(false);
-    useEffect(()=>{
-        if(certSaved){
-            DevSettings.reload()
-        }
-    },[certSaved])
+    
     const handleSubmition = (data) => {
        if(SaveCertificate(data)){
            setCertSaved(true);
+        //    navigation.dispatch(CommonActions.reset({index:0, routes:[{name:'Certificate'}] }));
+            ResetRoute({navigation},'Certificate');
+           
        }
        else {
            setCertSaved(false);
@@ -35,7 +35,7 @@ function VerifyScan({route,navigation}) {
                             <Text style={styles.name} >{data.data.first_name_en} {data.data.last_name_en}</Text>
                        
                     </VStack>
-            
+                            
                
         
         </View> 
