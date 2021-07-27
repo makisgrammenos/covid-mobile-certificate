@@ -8,6 +8,10 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-
+android/
+index.js
+metroconfig.js
+.expo-shared/
+.
 # macOS
 .DS_Store

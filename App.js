@@ -59,12 +59,14 @@ export default function App({navigation}) {
               backgroundColor:"#003476"    },
               headerTintColor: 'white',
               headerTitleStyle:'bold',
-              headerTitleAlign:'center'}}/>
+              headerTitleAlign:'center',
+             
+            }}/>
             <Stack.Screen name="Certificate" options={{headerTitle:"Πιστοποιτηκό εμβολιασμού COVID-19",headerStyle:{
               backgroundColor:"#003476"    },
               headerTintColor: 'white',
               headerTitleStyle:'bold',
-              headerTitleAlign:'center'}}>
+              headerTitleAlign:'center',}}>
                 {props => <Certificate {...props} cert={cert}/>}
               </Stack.Screen>
           </Stack.Navigator>
