@@ -49,7 +49,7 @@ function App({navigation}) {
         <NavigationContainer>
         
           <Stack.Navigator initialRouteName={'Check'}>
-            <Stack.Screen name="QRSCAN" component={ScanScreen} options={{headerTitle:"Εισαγωγη Πιστοποιτηκού",headerStyle:{
+            <Stack.Screen name="QRSCAN" component={ScanScreen} options={{headerTitle:"Εισαγωγη Πιστοποιητικού",headerStyle:{
               backgroundColor:"#003476"    },
               headerTintColor: 'white',
               headerTitleStyle:'bold',
@@ -62,7 +62,7 @@ function App({navigation}) {
               headerTitleAlign:'center',
              
             }}/>
-            <Stack.Screen name="Certificate" options={{headerTitle:"Πιστοποιτηκό εμβολιασμού COVID-19",headerStyle:{
+            <Stack.Screen name="Certificate" options={{headerTitle:"Πιστοποιητικό εμβολιασμού COVID-19",headerStyle:{
               backgroundColor:"#003476"    },
               headerTintColor: 'white',
               headerTitleStyle:'bold',

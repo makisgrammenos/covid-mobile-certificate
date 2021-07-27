@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import { View, Text,StyleSheet,Button,Alert} from 'react-native';
+import { View, Text,StyleSheet,Button,Alert ,Image} from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import QRCode from 'react-native-qrcode-svg';
 import {NativeBaseProvider ,Center,VStack,Heading} from  'native-base';
@@ -44,8 +44,10 @@ class Certificate extends React.Component{
             console.log(this.state.certificate)
             return(
                 <NativeBaseProvider>
+                  
                     <View style={styles.container} >
                         <VStack space={5} alignItems='center'>
+                        
                         <QRCode value={this.state.certificate.qr} size={200}/>
                         <Text style={styles.nameDesc}>Ονοματεπώνυμο</Text>
                         <Text style={styles.name}>{this.state.certificate.data.first_name_el} {this.state.certificate.data.last_name_el}</Text>
@@ -58,7 +60,7 @@ class Certificate extends React.Component{
                         
                     </View>
                     <View style={styles.buttonCon}>
-                        <Button title="Διαγραφή Πιστοποιητικού" style={styles.button} color={" #003476"} onPress={this.ShowAlert}/>
+                        <Button title="Διαγραφη Πιστοποιητικου" style={styles.button} color={"#003476"} onPress={this.ShowAlert}/>
                     </View>
                 </NativeBaseProvider>
             )
