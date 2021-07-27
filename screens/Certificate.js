@@ -1,8 +1,10 @@
 import React,{useEffect,useState} from 'react';
-import { View, Text,StyleSheet} from 'react-native';
+import { View, Text,StyleSheet,Button,Alert} from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import QRCode from 'react-native-qrcode-svg';
 import {NativeBaseProvider ,Center,VStack,Heading} from  'native-base';
+import { CommonActions } from '@react-navigation/native';
+
 
 class Certificate extends React.Component{
     constructor(props){
@@ -11,11 +13,24 @@ class Certificate extends React.Component{
             certificate:null,
             certLoaded:false
         }
-    } 
+        this.ShowAlert = this.ShowAlert.bind(this);
+        this.deleteCertificate = this.deleteCertificate.bind(this)
+        
+    }
+   async ShowAlert(){
+       await  Alert.alert("Διαγραφή Πιστοποιητικού","Να γίνει διαγραφή του πιστοποιητικού εμβολιασμού;",
+        [{text:"Ακύρωση"},{text:"Διαγραφή",onPress:  this.deleteCertificate }])
+    }
+    async deleteCertificate(){
+        const {navigation} = this.props;
+        await SecureStore.deleteItemAsync('certificate')
+        navigation.dispatch(CommonActions.reset({index:0,routes:[{name:'QRSCAN'}]}))
+    }
     componentDidMount(){
+       
         SecureStore.getItemAsync('certificate').then(  (value)=>{
             this.setState({certificate:JSON.parse(value)});
-            console.log('EDW',this.state.certificate,value)
+           
             this.setState({certLoaded:true});
         });
     }
@@ -42,6 +57,9 @@ class Certificate extends React.Component{
                         
                         
                     </View>
+                    <View style={styles.buttonCon}>
+                        <Button title="Διαγραφή Πιστοποιητικού" style={styles.button} color={" #003476"} onPress={this.ShowAlert}/>
+                    </View>
                 </NativeBaseProvider>
             )
         }
@@ -62,5 +80,17 @@ const styles = StyleSheet.create({
     nameDesc:{
         fontSize:18,
     },
+    button:{
+        
+    },
+    buttonCon:{   
+        marginBottom:30,
+        marginRight:10,
+        marginLeft:10,
+
+      
+      
+        
+    }
 })
 export default Certificate;

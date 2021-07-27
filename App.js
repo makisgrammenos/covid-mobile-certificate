@@ -7,40 +7,40 @@ import VerifyScan from './screens/VerifyScan';
 import Certificate from './screens/Certificate';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as SecureStore from 'expo-secure-store';
-export default function App({navigation}) {
+import { CommonActions } from '@react-navigation/native';
+import CheckRoute from './screens/check';
+
+function App({navigation}) {
   const Stack  = createStackNavigator();
   const [check,setCheck] = useState(false);
   const [certExists,setCertExists] = useState(false);
   var cert = null;
-  useEffect(()=>{
-    try{
-     SecureStore.getItemAsync('certificate').then(value=>{
-       if (value!=null){
-         cert = JSON.parse(value);
+  
+  console.log(navigation)
+  // useEffect(()=>{
+  //   try{
+  //    SecureStore.getItemAsync('certificate').then(value=>{
+  //      if (value!=null){
+  //        cert = JSON.parse(value);
+  //         navigation.dispatch(CommonActions.reset({index:0, routes:[{name:'Certifi cate',params:cert}] }));
         
-       }
-     });
+        
+  //      }
+  //    });
       
-    }
-    catch(e){
-      alert(e)
-    }
-    if(cert!=null){
-      setCertExists(true);
-    }
-    setCheck(true);
-    console.log(check)
-    console.log(certExists)
-    console.log(cert)
-  },[check])
-  if (!check){
-    return(
-      <View>
-        <Text>Loading</Text>
-      </View>
-    )
-  }
-  else{
+  //   }
+  //   catch(e){
+  //     alert(e)
+  //   }
+  //   if(cert!=null){
+  //     setCertExists(true);
+  //   }
+  //   setCheck(true);
+  //   console.log(check)
+  //   console.log(certExists)
+  //   console.log(cert)
+  // },[check])
+ 
     return (
     
         
@@ -48,7 +48,7 @@ export default function App({navigation}) {
       
         <NavigationContainer>
         
-          <Stack.Navigator initialRouteName={certExists?"Certificate":'QRSCAN'}>
+          <Stack.Navigator initialRouteName={'Check'}>
             <Stack.Screen name="QRSCAN" component={ScanScreen} options={{headerTitle:"Εισαγωγη Πιστοποιτηκού",headerStyle:{
               backgroundColor:"#003476"    },
               headerTintColor: 'white',
@@ -69,13 +69,20 @@ export default function App({navigation}) {
               headerTitleAlign:'center',}}>
                 {props => <Certificate {...props} cert={cert}/>}
               </Stack.Screen>
+              <Stack.Screen name ="Check" component={CheckRoute} options={{headerTitle:"Έλεγχος στοιχείων",headerStyle:{
+              backgroundColor:"#003476"    },
+              headerTintColor: 'white',
+              headerTitleStyle:'bold',
+              headerTitleAlign:'center',
+             
+            }}/>
           </Stack.Navigator>
         </NavigationContainer>
       </>
     
     );
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -86,3 +93,5 @@ const styles = StyleSheet.create({
   },
   
 });
+
+export default App;

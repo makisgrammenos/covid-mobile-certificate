@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button,Dimensions } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
+import { CommonActions } from '@react-navigation/native';
+
 import PostQR from '../modules/PostQR';
 
 function ScanScreen({navigation}) {
@@ -21,7 +23,7 @@ function ScanScreen({navigation}) {
       
      navigation.navigate('VerifyScan',{data:data})
     }
-  }, [done]);
+  }, [done]); 
   const handleBarCodeScanned =  async ({ type, data }) => {
   
    
