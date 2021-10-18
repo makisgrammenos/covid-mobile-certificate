@@ -23,15 +23,19 @@ function ScanScreen({navigation}) {
     if (done){
       
      navigation.navigate('VerifyScan',{data:data})
+      setScanned(false)
+      setDone(false)
     }
   }, [done]); 
   const handleBarCodeScanned =  async ({ type, data }) => {
-  
+    setScanned(true)
    
     var info =  await PostQR(data);
+    
+    
     setData(info);
    
-   await  setDone(true);
+    await  setDone(true);
   };
 
   if (hasPermission === null) {
@@ -63,8 +67,8 @@ function ScanScreen({navigation}) {
         </View>
         <View style={styles.layerBottom} />
       </BarCodeScanner>
-
-      {scanned && <Button title={'Close Scanned'} onPress={() => setDone(false)} />}
+     
+      {/* {scanned && <Button title={'Close Scanned'} onPress={() => setDone(false)} />} */}
     </View>
   );
 }

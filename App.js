@@ -77,7 +77,8 @@ function App({navigation}) {
               headerTintColor: 'white',
               headerStatusBarHeight:30,
               headerTitleStyle:'bold',
-              headerTitleAlign:'center',}}>
+              headerTitleAlign:'center',
+              animationTypeForReplace:"push"}}>
                 {props => <Certificate {...props}/>}
               </Stack.Screen>
               <Stack.Screen name ="Check" component={CheckRoute} options={{headerTitle:"Έλεγχος στοιχείων",headerStyle:{

@@ -29,11 +29,11 @@ async function PostQR(data){
     var broken_link = data.split('/')
     var showLink = `https://dilosi.services.gov.gr/show/${broken_link[broken_link.length-1]}`
     var requestURL = `https://dilosi.services.gov.gr/api/declarations/${broken_link[broken_link.length-1]}/`
-   
+    console.log(broken_link[broken_link.length-1])
     var info;
    await  axios.get(requestURL).then(async function(response){
     
-        console.log(response.data)
+        // console.log(response.data)
         const {first_name_el,last_name_el,first_name_en,last_name_en} = response.data.extracted_step_info.fields;
         const first_dose = await KeyCheck("first_shot_date",response.data.step_info.fields,"event_1_date");
         const second_dose = await KeyCheck("second_shot_date",response.data.step_info.fields,"event_2_date");
