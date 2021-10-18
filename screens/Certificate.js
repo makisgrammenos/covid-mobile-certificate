@@ -4,8 +4,9 @@ import * as SecureStore from 'expo-secure-store';
 import QRCode from 'react-native-qrcode-svg';
 import {NativeBaseProvider ,Center,VStack,Heading} from  'native-base';
 import { CommonActions } from '@react-navigation/native';
+import GRCertificate from '../modules/certificates/GRCertificate';
 
-
+// 
 class Certificate extends React.Component{
     constructor(props){
         super(props);
@@ -34,40 +35,25 @@ class Certificate extends React.Component{
             this.setState({certLoaded:true});
         });
     }
+
     render(){
-        if (!this.state.certLoaded){
-            return(<View>
-                <Text>Loading</Text>
-            </View>);   
+        if (! this.state.certLoaded){
+            return(
+                <View>
+                    <Text>Loading</Text>
+                </View>
+            )
         }
         else{
-            console.log(this.state.certificate)
             return(
                 <NativeBaseProvider>
-                  
-                    <View style={styles.container} >
-                        <VStack space={5} alignItems='center'>
-                        
-                        <QRCode value={this.state.certificate.qr} size={200}/>
-                        <Text style={styles.nameDesc}>Ονοματεπώνυμο</Text>
-                        <Text style={styles.name}>{this.state.certificate.data.first_name_el} {this.state.certificate.data.last_name_el}</Text>
-                        <Text style={styles.nameDesc} >Full Name</Text>
-                        <Text style={styles.name} >{this.state.certificate.data.first_name_en} {this.state.certificate.data.last_name_en}</Text>
-                       
-                        
-                        </VStack>
-                        
-                        
-                    </View>
-                    <View style={styles.buttonCon}>
-                        <Button title="Διαγραφη Πιστοποιητικου" style={styles.button} color={"#003476"} onPress={this.ShowAlert}/>
-                    </View>
+                    <GRCertificate certificate={this.state.certificate} deleteCertificate={this.ShowAlert}/>
+
                 </NativeBaseProvider>
             )
         }
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         flex:1,

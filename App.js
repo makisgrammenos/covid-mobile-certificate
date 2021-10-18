@@ -8,8 +8,17 @@ import Certificate from './screens/Certificate';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as SecureStore from 'expo-secure-store';
 import { CommonActions } from '@react-navigation/native';
+import { Platform} from 'react-native';
+import CertHeader from './modules/headers/cert_header';
 import CheckRoute from './screens/check';
-
+function Header(props){
+  return(
+    <View style={{paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0   }}>
+      <Text>Ελληνική Δημοκρατία</Text>
+      <Text>Πιστοποιτικό Eμβολιασμού COVID-19</Text>
+    </View>
+  )
+}
 function App({navigation}) {
   const Stack  = createStackNavigator();
   const [check,setCheck] = useState(false);
@@ -46,9 +55,10 @@ function App({navigation}) {
         
       <>
       
-        <NavigationContainer>
-        
+        <NavigationContainer >
+          
           <Stack.Navigator initialRouteName={'Check'}>
+            
             <Stack.Screen name="QRSCAN" component={ScanScreen} options={{headerTitle:"Εισαγωγη Πιστοποιητικού",headerStyle:{
               backgroundColor:"#003476"    },
               headerTintColor: 'white',
@@ -62,12 +72,13 @@ function App({navigation}) {
               headerTitleAlign:'center',
              
             }}/>
-            <Stack.Screen name="Certificate" options={{headerTitle:"Πιστοποιητικό εμβολιασμού COVID-19",headerStyle:{
+            <Stack.Screen name="Certificate" options={{headerTitle:"Βεβαίωση Εμβολιασμού COVID-19",headerStyle:{
               backgroundColor:"#003476"    },
               headerTintColor: 'white',
+              headerStatusBarHeight:30,
               headerTitleStyle:'bold',
               headerTitleAlign:'center',}}>
-                {props => <Certificate {...props} cert={cert}/>}
+                {props => <Certificate {...props}/>}
               </Stack.Screen>
               <Stack.Screen name ="Check" component={CheckRoute} options={{headerTitle:"Έλεγχος στοιχείων",headerStyle:{
               backgroundColor:"#003476"    },

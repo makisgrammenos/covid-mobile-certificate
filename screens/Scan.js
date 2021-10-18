@@ -28,9 +28,9 @@ function ScanScreen({navigation}) {
   
    
     var info =  await PostQR(data);
-    setData(info);
+    await setData(info);
    
-    setDone(true);
+   await  setDone(true);
   };
 
   if (hasPermission === null) {

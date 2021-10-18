@@ -8,6 +8,7 @@ function CheckRoute({navigation}){
     const  [loading,setLoading] = useState(true);
     useEffect(()=>{
         SecureStore.getItemAsync('certificate').then(value=>{
+            
             if (value!=null){
                 navigation.dispatch(CommonActions.reset({index:0, routes:[{name:'Certificate'}]}));
             }
