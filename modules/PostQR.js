@@ -31,6 +31,7 @@ async function PostQR(data){
     var requestURL = `https://dilosi.services.gov.gr/api/declarations/${broken_link[broken_link.length-1]}/`
     console.log(broken_link[broken_link.length-1])
     var info;
+    var error = false;
    await  axios.get(requestURL).then(async function(response){
     
         // console.log(response.data)
@@ -54,11 +55,13 @@ async function PostQR(data){
     }).then(data=> {
        
         info = data}).catch(err=>{
-        alert(err)
+        error = true
+        // return undefined
     })
+    console.log(info)
     
    
-    return {'data':info,'qr':showLink}
+    return {'data':info,'qr':showLink,'error':error}
 }
 
 export default PostQR;

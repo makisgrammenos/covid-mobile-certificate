@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState,useEffect} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View ,Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import ScanScreen  from './screens/Scan';
 import VerifyScan from './screens/VerifyScan';
@@ -11,6 +11,7 @@ import { CommonActions } from '@react-navigation/native';
 import { Platform} from 'react-native';
 import CertHeader from './modules/headers/cert_header';
 import CheckRoute from './screens/check';
+// import { Button } from 'native-base';
 function Header(props){
   return(
     <View style={{paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0   }}>
@@ -63,13 +64,18 @@ function App({navigation}) {
               backgroundColor:"#003476"    },
               headerTintColor: 'white',
               headerTitleStyle:'bold',
-              headerTitleAlign:'center'
+              headerTitleAlign:'center',
+              headerRight:() =>(
+                <Button title={'test'}/>
+              )
+              
             }}/>
             <Stack.Screen name ="VerifyScan" component={VerifyScan} options={{headerTitle:"Επιβεβαίωση στοιχείων",headerStyle:{
               backgroundColor:"#003476"    },
               headerTintColor: 'white',
               headerTitleStyle:'bold',
               headerTitleAlign:'center',
+              
              
             }}/>
             <Stack.Screen name="Certificate" options={{headerTitle:"Βεβαίωση Εμβολιασμού COVID-19",headerStyle:{

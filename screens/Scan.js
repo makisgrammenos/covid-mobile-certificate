@@ -19,23 +19,35 @@ function ScanScreen({navigation}) {
       setHasPermission(status === 'granted');
     })();
   }, []);
+  // useEffect(()=>{
+  //   if(scanned){
+  //   setScanned(false)
+  //   }
+  // },[scanned])
   useEffect(() => {
     if (done){
-      
+      // setScanned(false)
+      // setDone(false)
      navigation.navigate('VerifyScan',{data:data})
-      setScanned(false)
-      setDone(false)
+      
     }
   }, [done]); 
   const handleBarCodeScanned =  async ({ type, data }) => {
     setScanned(true)
    
     var info =  await PostQR(data);
+    if (info.error){
+      alert("An error occured")
+     
+    }
+    else{
+    
+      setData(info);
+    
+      await  setDone(true);
+    }
     
     
-    setData(info);
-   
-    await  setDone(true);
   };
 
   if (hasPermission === null) {

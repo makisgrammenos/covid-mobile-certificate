@@ -6,7 +6,7 @@ import {NativeBaseProvider ,Center,VStack,Heading} from  'native-base';
 import { CommonActions } from '@react-navigation/native';
 import { Platform} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { flexWrap, justifyContent } from 'styled-system';
+import { flexWrap, justifyContent, margin, marginBottom } from 'styled-system';
 
 
 class GRCertificate extends React.Component{
@@ -112,8 +112,9 @@ const styles = StyleSheet.create({
     },
     QR:{
         paddingTop:50,
-        flex:1,
-        alignItems:'center'
+        
+        alignItems:'center',
+        
     },
     container2:{
         flexDirection:'row',
@@ -141,10 +142,17 @@ const styles = StyleSheet.create({
     button:{
         
     },
-    buttonCon:{   
-        marginBottom:30,
+    buttonCon:{ 
+        
+        
         marginRight:10,
         marginLeft:10,
+        flexGrow: 1, 
+        flexDirection: 'column', 
+        // position:'absolute',
+        // bottom:0,
+        justifyContent: "center" ,
+    
 
       
       
