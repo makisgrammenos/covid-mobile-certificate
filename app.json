@@ -4,7 +4,7 @@
     "slug": "CovidCertificate",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/GR.png",
+    "icon": "./assets/GR500.png",
     "splash": {
       "image": "./assets/govgr.png",
       "resizeMode": "contain",

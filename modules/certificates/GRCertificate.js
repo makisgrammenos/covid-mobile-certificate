@@ -6,7 +6,7 @@ import {NativeBaseProvider ,Center,VStack,Heading} from  'native-base';
 import { CommonActions } from '@react-navigation/native';
 import { Platform} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { flexWrap } from 'styled-system';
+import { flexWrap, justifyContent } from 'styled-system';
 
 
 class GRCertificate extends React.Component{
@@ -62,13 +62,13 @@ class GRCertificate extends React.Component{
 
                             <View>
                                 <Text style={styles.nameDesc}>Αρ.δόσεων</Text>
-                                <Text style={{fontSize:15, color: '#003476',textAlign:'right'}}>{this.state.certificate.data.second_dose!=""?second_dose:1}</Text>
+                                <Text style={{fontSize:15, color: '#003476',textAlign:'right'}}>{this.state.certificate.data.second_dose!=""?2:1}</Text>
                             </View>
                             {/* <Text style={styles.nameDesc} >Full Name</Text>
                             <Text style={styles.name} >{this.state.certificate.data.first_name_en} {this.state.certificate.data.last_name_en}</Text> */}
                             
                         </View>
-                        <View style={styles.container2}>
+                        <View style={[styles.container2]}>
                             <View>
                                 <Text style={styles.nameDesc}>Πρώτη δόση</Text>
                                 <Text style={{fontSize:15, color: '#003476'}}>{this.state.certificate.data.first_dose}</Text>
@@ -123,10 +123,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     vaccinetype:{
-        flexDirection:'row',
-        flexWrap:'wrap',
-        paddingTop:25,
         
+        
+        paddingTop:25,
+        alignItems:'center',
         justifyContent: 'center',
     },
     

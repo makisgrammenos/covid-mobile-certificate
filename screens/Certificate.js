@@ -33,6 +33,7 @@ class Certificate extends React.Component{
             this.setState({certificate:JSON.parse(value)});
            
             this.setState({certLoaded:true});
+            console.log(this.state.certificate)
         });
     }
 

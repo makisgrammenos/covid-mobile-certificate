@@ -5,6 +5,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import { CommonActions } from '@react-navigation/native';
 
 import PostQR from '../modules/PostQR';
+import { flexGrow } from 'styled-system';
 
 function ScanScreen({navigation}) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -28,7 +29,7 @@ function ScanScreen({navigation}) {
   
    
     var info =  await PostQR(data);
-    await setData(info);
+    setData(info);
    
    await  setDone(true);
   };
@@ -45,16 +46,62 @@ function ScanScreen({navigation}) {
       </View>) : 
  
     (<View style={{ flex: 1 }}>
-      <BarCodeScanner
+      {/* <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={[StyleSheet.absoluteFill, { flex: 1 }]}
-      />
+        style={[StyleSheet.absoluteFill]}
+       
+      /> */}
+      <BarCodeScanner
+         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        style={[StyleSheet.absoluteFill, styles.container]}
+      >
+        <View style={styles.layerTop} />
+        <View style={styles.layerCenter}>
+          <View style={styles.layerLeft} />
+          <View style={styles.focused} />
+          <View style={styles.layerRight} />
+        </View>
+        <View style={styles.layerBottom} />
+      </BarCodeScanner>
 
       {scanned && <Button title={'Close Scanned'} onPress={() => setDone(false)} />}
     </View>
   );
 }
-export default ScanScreen;
+const opacity = 'rgba(0, 0, 0, .6)';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column'
+    
+  },
+  layerTop: {
+    flex: 2,
+    backgroundColor: opacity
+  },
+  layerCenter: {
+    flex: 1,
+    flexDirection: 'row',
+    flexGrow:3
+  },
+  layerLeft: {
+    flex: 1,
+    backgroundColor: opacity
+  },
+  focused: {
+    flex: 10
+  },
+  layerRight: {
+    flex: 1,
+    backgroundColor: opacity
+  },
+  layerBottom: {
+    flex: 2,
+    backgroundColor: opacity
+  },
+})
+  export default ScanScreen;
 
 
 
